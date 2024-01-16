@@ -20,6 +20,6 @@ The subgraph is now available to query on Arbitrum at the address below. Note: y
 
 https://gateway-arbitrum.network.thegraph.com/api/${API_KEY}/subgraphs/id/6HzdSVrye3kxbwRmAZtDyWENGQQnTHnEucjm5Gen4NsL
 
-You can view a query that returned data from this endpoint [here](https://github.com/julianeon/cronos-graph/blob/main/graph_query.js), in my repo showing a Node.js Express app displaying transfer data. 
+[This](https://github.com/julianeon/cronos-graph/blob/main/graph_query.js) is a GrapQL query that returned data from this endpoint. It is taken from a repo showing a Node.js Express app displaying Cronos transfer data, using this endpoint. 
 
 
