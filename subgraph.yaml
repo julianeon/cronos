@@ -1,0 +1,48 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: CroToken
+    network: mainnet
+    source:
+      address: "0xA0b73E1Ff0B80914AB6fe0444E65848C4C34450b"
+      abi: CroToken
+      startBlock: 16823173
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - UpdatedTokenInformation
+        - Upgrade
+        - UpgradeAgentSet
+        - Mint
+        - MintFinished
+        - OwnershipRenounced
+        - OwnershipTransferred
+        - Approval
+        - Transfer
+      abis:
+        - name: CroToken
+          file: ./abis/CroToken.json
+      eventHandlers:
+        - event: UpdatedTokenInformation(string,string)
+          handler: handleUpdatedTokenInformation
+        - event: Upgrade(indexed address,indexed address,uint256)
+          handler: handleUpgrade
+        - event: UpgradeAgentSet(address)
+          handler: handleUpgradeAgentSet
+        - event: Mint(indexed address,uint256)
+          handler: handleMint
+        - event: MintFinished()
+          handler: handleMintFinished
+        - event: OwnershipRenounced(indexed address)
+          handler: handleOwnershipRenounced
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/cro-token.ts
