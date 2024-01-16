@@ -20,6 +20,6 @@ The subgraph is now available to query on Arbitrum at the URL below. Note: you m
 
 https://gateway-arbitrum.network.thegraph.com/api/${API_KEY}/subgraphs/id/6HzdSVrye3kxbwRmAZtDyWENGQQnTHnEucjm5Gen4NsL
 
-[This](https://github.com/julianeon/cronos-graph/blob/main/graph_query.js) is a GrapQL query that returns data from this endpoint, about a single transaction. It is taken from [this repo](https://github.com/julianeon/cronos-graph/tree/main) showing a Node.js Express app displaying Cronos transfer data, using this endpoint. 
+[This](https://github.com/julianeon/cronos-graph/blob/main/graph_query.js) is a GraphQL query that returns data from this endpoint, about a single transaction, based on its transaction hash. It is taken from [this repo](https://github.com/julianeon/cronos-graph/tree/main) showing a Node.js Express app displaying Cronos transfer data, using this endpoint. 
 
 
