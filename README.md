@@ -8,6 +8,8 @@ https://etherscan.io/address/0xA0b73E1Ff0B80914AB6fe0444E65848C4C34450b#code
 
 # Setup
 
+![subgraph studio](subgraph_studio.png)
+
 This subgraph was created by following the [Quick Start](https://thegraph.com/docs/en/quick-start/) tutorial, using Subgraph Studio and the Graph CLI, specifying the Cronos smart token address on Ethereum as the address.
 
 https://thegraph.com/docs/en/quick-start/
