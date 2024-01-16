@@ -1,14 +1,14 @@
 # About
 
-This is my implementation of a subgraph for a typical ERC20 token - in this case one called Cronos token.
+This is my implementation of a subgraph for a typical ERC20 token - in this case, the Cronos token.
 
-You can see the smart contract address on Etherscan here.
+You can see the smart contract address for the Cronos token on Etherscan at the link below.
 
 https://etherscan.io/address/0xA0b73E1Ff0B80914AB6fe0444E65848C4C34450b#code
 
 # Setup
 
-This was created by following the Quick Start tutorial, specifying the Cronos smart token address on Ethereum as the address.
+This subgraph was created by following the [Quick Start](https://thegraph.com/docs/en/quick-start/) tutorial, specifying the Cronos smart token address on Ethereum as the address.
 
 https://thegraph.com/docs/en/quick-start/
 
