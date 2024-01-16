@@ -8,7 +8,7 @@ https://etherscan.io/address/0xA0b73E1Ff0B80914AB6fe0444E65848C4C34450b#code
 
 # Setup
 
-This was created by following this tutorial, and specifying the Cronos smart token address on Ethereum as the address.
+This was created by following the Quick Start tutorial, specifying the Cronos smart token address on Ethereum as the address.
 
 https://thegraph.com/docs/en/quick-start/
 
