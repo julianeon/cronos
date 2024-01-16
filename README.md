@@ -24,4 +24,21 @@ https://gateway-arbitrum.network.thegraph.com/api/${API_KEY}/subgraphs/id/6HzdSV
 
 [This](https://github.com/julianeon/cronos-graph/blob/main/graph_query.js) is a GraphQL query that returns data from this endpoint, about a single transaction, based on its transaction hash. It is taken from [this repo](https://github.com/julianeon/cronos-graph/tree/main) showing a Node.js Express app displaying Cronos transfer data, using this endpoint. 
 
+# Details
+
+These details were taken from Subgraph Studio.
+
+## Production Query URL (Arbitrum One)
+
+https://gateway-arbitrum.network.thegraph.com/api/[api-key]/subgraphs/id/6HzdSVrye3kxbwRmAZtDyWENGQQnTHnEucjm5Gen4NsL
+
+## Development Query URL - Latest Version
+
+https://api.studio.thegraph.com/query/63555/cronos/version/latest
+
+## Development Query URL - Selected Version
+
+https://api.studio.thegraph.com/query/63555/cronos/v0.0.1
+
+
 
