@@ -26,7 +26,7 @@ https://gateway-arbitrum.network.thegraph.com/api/${API_KEY}/subgraphs/id/6HzdSV
 
 # Details
 
-These details were taken from Subgraph Studio.
+These details were taken from Subgraph Studio, from my deployment of this repo.
 
 ## Production Query URL (Arbitrum One)
 
