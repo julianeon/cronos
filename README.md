@@ -12,7 +12,7 @@ This subgraph was created by following the [Quick Start](https://thegraph.com/do
 
 https://thegraph.com/docs/en/quick-start/
 
-I made some changes from the defaults: I removed OwnerTransferred and OwnerDeployed as events from the subgraph, as entities in the schema, and from the AssemblyScript (ts) file.
+I made some changes from the defaults: I removed OwnerTransferred and OwnerDeployed as events from subgraph.yaml, as entities in schema.graphql, and from the AssemblyScript file in src/cro-token.ts.
 
 I deployed the subgraph to Arbitrum One after bridging over a small amount of Ethereum (~$6) to enable this.
 
