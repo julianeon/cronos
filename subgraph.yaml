@@ -19,8 +19,6 @@ dataSources:
         - UpgradeAgentSet
         - Mint
         - MintFinished
-        - OwnershipRenounced
-        - OwnershipTransferred
         - Approval
         - Transfer
       abis:
@@ -37,10 +35,6 @@ dataSources:
           handler: handleMint
         - event: MintFinished()
           handler: handleMintFinished
-        - event: OwnershipRenounced(indexed address)
-          handler: handleOwnershipRenounced
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
         - event: Transfer(indexed address,indexed address,uint256)

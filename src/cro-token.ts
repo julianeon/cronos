@@ -4,8 +4,6 @@ import {
   UpgradeAgentSet as UpgradeAgentSetEvent,
   Mint as MintEvent,
   MintFinished as MintFinishedEvent,
-  OwnershipRenounced as OwnershipRenouncedEvent,
-  OwnershipTransferred as OwnershipTransferredEvent,
   Approval as ApprovalEvent,
   Transfer as TransferEvent
 } from "../generated/CroToken/CroToken"
@@ -15,8 +13,6 @@ import {
   UpgradeAgentSet,
   Mint,
   MintFinished,
-  OwnershipRenounced,
-  OwnershipTransferred,
   Approval,
   Transfer
 } from "../generated/schema"
@@ -83,35 +79,6 @@ export function handleMintFinished(event: MintFinishedEvent): void {
   let entity = new MintFinished(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleOwnershipRenounced(event: OwnershipRenouncedEvent): void {
-  let entity = new OwnershipRenounced(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.previousOwner = event.params.previousOwner
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleOwnershipTransferred(
-  event: OwnershipTransferredEvent
-): void {
-  let entity = new OwnershipTransferred(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.previousOwner = event.params.previousOwner
-  entity.newOwner = event.params.newOwner
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
