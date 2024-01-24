@@ -20,7 +20,7 @@ I deployed the subgraph to Arbitrum One after bridging over a small amount of Et
 
 After that, I introduced a new entity called Info, which is defined as an entity in [schema.graphql](schema.graphql) and shows the strings it returns in [src/cro-token.ts](src/cro-token.ts).
 
-The subgraph is now available to query on Arbitrum at the URL below. Note: you must sign up for and supply your own API key.
+The subgraph can be queried on Arbitrum for transaction data. For the Info query, use the Development Query URL. Note: you must sign up for and supply your own API key.
 
 https://gateway-arbitrum.network.thegraph.com/api/${API_KEY}/subgraphs/id/6HzdSVrye3kxbwRmAZtDyWENGQQnTHnEucjm5Gen4NsL
 
@@ -30,7 +30,7 @@ Both queries can be viewed live, with their output as HTML, if you locally run [
 
 # Details
 
-These details were taken from Subgraph Studio, from my Cronos subgraph, from my deployment of this repo on the Arbitrum network.
+These details were taken from Subgraph Studio, from my Cronos subgraph.
 
 ## Production Query URL (Arbitrum One)
 
