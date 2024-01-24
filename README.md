@@ -30,7 +30,7 @@ Both queries can be viewed live, with their output as HTML, if you locally run [
 
 # Details
 
-These details were taken from Subgraph Studio, from my Cronos subgraph.
+These details were taken from Subgraph Studio, from my Cronos subgraph. You must supply your own API key.
 
 ## Production Query URL (Arbitrum One)
 
