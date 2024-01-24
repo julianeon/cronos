@@ -46,7 +46,7 @@ https://api.studio.thegraph.com/query/63555/cronos/v0.0.1
 
 # Update
 
-The original query is here.
+The original query is here, for an example transaction.
 
 https://github.com/julianeon/cronos-graph/blob/main/graph_query.js
 
