@@ -26,7 +26,7 @@ https://gateway-arbitrum.network.thegraph.com/api/${API_KEY}/subgraphs/id/6HzdSV
 
 This [tx query](https://github.com/julianeon/cronos-graph/blob/main/graph_query.js) returns data about a single transaction based on its transaction hash, and this [info query](https://github.com/julianeon/cronos-graph/blob/main/info_query.js) returns hardcoded data. 
 
-Both queries can be viewed live, with their output as HTML, if you locally run [cronos-graph](https://github.com/julianeon/cronos-graph/tree/main) a Node.js Express app which hits this subgraph. To see the query output, view /data.html or /info.html.
+Both queries can be viewed live, with their output as HTML, if you locally run [cronos-graph](https://github.com/julianeon/cronos-graph/tree/main), a Node.js Express app which hits this subgraph. To see the query output, view /data.html or /info.html.
 
 # Details
 
