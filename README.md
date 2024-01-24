@@ -18,7 +18,7 @@ I made some changes from the defaults: I removed OwnerTransferred and OwnerDeplo
 
 I deployed the subgraph to Arbitrum One after bridging over a small amount of Ethereum (~$6) to enable this.
 
-After that, I introduced a new entity called Info, which is defined as an entity in [schema.graphql](schema.graphql) and has an associated function in src/cro-token.js.
+After that, I introduced a new entity called Info, which is defined as an entity in [schema.graphql](schema.graphql) and has an associated function in [src/cro-token.js](cro-token.js).
 
 The subgraph is now available to query on Arbitrum at the URL below. Note: you must sign up for and supply your own API key.
 
