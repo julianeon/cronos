@@ -18,13 +18,13 @@ I made some changes from the defaults: I removed OwnerTransferred and OwnerDeplo
 
 I deployed the subgraph to Arbitrum One after bridging over a small amount of Ethereum (~$6) to enable this.
 
-After that, I introduced a new entity called Info.
+After that, I introduced a new entity called Info, which is defined as an entity in [schema.graphql](schema.graphql) and has an associated function in src/cro-token.js.
 
 The subgraph is now available to query on Arbitrum at the URL below. Note: you must sign up for and supply your own API key.
 
 https://gateway-arbitrum.network.thegraph.com/api/${API_KEY}/subgraphs/id/6HzdSVrye3kxbwRmAZtDyWENGQQnTHnEucjm5Gen4NsL
 
-This [tx query](https://github.com/julianeon/cronos-graph/blob/main/graph_query.js) returns data about a single transaction based on its transaction hash, and this [info query](https://github.com/julianeon/cronos-graph/blob/main/info_query.js) returns hardcoded data. 
+This [tx query](https://github.com/julianeon/cronos-graph/blob/main/graph_query.js) returns data about a single transaction based on its transaction hash, and this [info query](https://github.com/julianeon/cronos-graph/blob/main/info_query.js) returns Info data. 
 
 Both queries can be viewed live, with their output as HTML, if you locally run [cronos-graph](https://github.com/julianeon/cronos-graph/tree/main), a Node.js Express app which hits this subgraph. To see the query output, view the homepage, /data.html or /info.html.
 
