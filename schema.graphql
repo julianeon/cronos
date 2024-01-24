@@ -61,3 +61,12 @@ type Transfer @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+
+type Info @entity(immutable: true) {
+  id: ID!
+  title: String!
+  summary: String!
+  description: String!
+  license: String!
+}
+

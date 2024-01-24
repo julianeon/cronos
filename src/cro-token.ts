@@ -14,7 +14,8 @@ import {
   Mint,
   MintFinished,
   Approval,
-  Transfer
+  Transfer, 
+  Info
 } from "../generated/schema"
 
 export function handleUpdatedTokenInformation(
@@ -103,16 +104,28 @@ export function handleApproval(event: ApprovalEvent): void {
 }
 
 export function handleTransfer(event: TransferEvent): void {
-  let entity = new Transfer(
+  let transferEntity = new Transfer(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
-  entity.from = event.params.from
-  entity.to = event.params.to
-  entity.value = event.params.value
+  transferEntity.from = event.params.from
+  transferEntity.to = event.params.to
+  transferEntity.value = event.params.value
 
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
+  transferEntity.blockNumber = event.block.number
+  transferEntity.blockTimestamp = event.block.timestamp
+  transferEntity.transactionHash = event.transaction.hash
 
-  entity.save()
+  transferEntity.save()
+
+  let infoEntityId = "00000";
+  let infoEntity = Info.load(infoEntityId);
+  if (infoEntity == null) {
+    infoEntity = new Info(infoEntityId);
+    infoEntity.title = "This is the title.";
+    infoEntity.summary = "This is the summary.";
+    infoEntity.description = "This is the description.";
+    infoEntity.license = "MIT";
+    infoEntity.save();
+  }
 }
+

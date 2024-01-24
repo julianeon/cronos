@@ -21,6 +21,7 @@ dataSources:
         - MintFinished
         - Approval
         - Transfer
+        - Info
       abis:
         - name: CroToken
           file: ./abis/CroToken.json
