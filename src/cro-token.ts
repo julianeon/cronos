@@ -17,7 +17,8 @@ import {
   Approval,
   Transfer, 
   Holder,
-  DailySale
+  DailySale,
+  Watchlist
 } from "../generated/schema"
 
 export function handleUpdatedTokenInformation(
@@ -108,13 +109,14 @@ export function handleApproval(event: ApprovalEvent): void {
 export function handleTransfer(event: TransferEvent): void {
   saveTransfer(event)
   updateHolderBalances(event)
-  handleDailySale(event)
+  saveDailySale(event)
+  watchlistCheck(event)
 }
 
 function saveTransfer(event: TransferEvent): void {
   let transferEntity = new Transfer(
-    event.transaction.hash.concatI32(event.logIndex.toI32()
-  ))
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
   transferEntity.from = event.params.from
   transferEntity.to = event.params.to
   transferEntity.value = event.params.value
@@ -148,7 +150,7 @@ function updateHolderBalances(event: TransferEvent): void {
   toHolder.save()
 }
 
-export function handleDailySale(event: TransferEvent): void {
+export function saveDailySale(event: TransferEvent): void {
   let date = event.block.timestamp.toI32()
   let dayId = date / 86400 
   let dailySaleId = dayId.toString()
@@ -165,3 +167,47 @@ export function handleDailySale(event: TransferEvent): void {
   dailySale.save()
 }
 
+function watchlistCheck(event: TransferEvent): void {
+  const specialAddressSmart: string[] = ["0xF78930A80E73b7343a3dd93E711A31800cb1cCd3", "0x8deEA861b99eBc48CED966C8e87fc2E4983a3170", "0x243Bb7Bf74D517D5585829Faf31f3cB5210C538e"];
+  const specialAddressFamous: string[] = ["0xA4218A698E77CCb93c2710fbCaA116A04e837295","0xeF3f7c1009084Bf4b920F2FB2559Fa89ea0E573D","0x794493883E7D354493349461C90AC59028682610"];
+  const specialAddressConcern: string[] = ["0xf431dA0523D426Aa75C52723C9d128326963C66e", "0x15DD58888Dc351ebb73DaadDE4313B9C78003fB6","0xf4cbeb8DA815188Bf3e2b13BFf26D1aa1B0635D1"];
+
+  let fromAddress = event.params.from.toHex();
+  let toAddress = event.params.to.toHex();
+  let transactionHash = event.transaction.hash.toHex();
+  let transactionValue = event.params.value;
+  let blockTimestamp = event.block.timestamp;
+
+  if (specialAddressSmart.includes(fromAddress) || specialAddressSmart.includes(toAddress)) {
+    saveWatchlist("watchlistSmart", transactionHash, blockTimestamp, transactionValue);
+  }
+
+  if (specialAddressFamous.includes(fromAddress) || specialAddressFamous.includes(toAddress)) {
+    saveWatchlist("watchlistFamous", transactionHash, blockTimestamp, transactionValue);
+  }
+
+  if (specialAddressConcern.includes(fromAddress) || specialAddressConcern.includes(toAddress)) {
+    saveWatchlist("watchlistConcern", transactionHash, blockTimestamp, transactionValue);
+  }
+}
+
+function saveWatchlist(watchlistId: string, transactionHash: string, blockTimestamp: BigInt, transactionValue: BigInt): void {
+  let watchlist = Watchlist.load(watchlistId);
+  if (!watchlist) {
+    watchlist = new Watchlist(watchlistId);
+    watchlist.transactions = [];
+    watchlist.blockTimestamps = [];
+    watchlist.totalValue = BigInt.fromI32(0); 
+  }
+
+  let transactions = watchlist.transactions;
+  let blockTimestamps = watchlist.blockTimestamps;
+  if (!transactions.includes(transactionHash)) { 
+    transactions.push(transactionHash);
+    blockTimestamps.push(blockTimestamp);
+    watchlist.transactions = transactions;
+    watchlist.blockTimestamps = blockTimestamps;
+    watchlist.totalValue = watchlist.totalValue.plus(transactionValue); 
+    watchlist.save();
+  }
+}

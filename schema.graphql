@@ -73,3 +73,9 @@ type DailySale @entity {
   numberOfSales: Int! 
 }
 
+type Watchlist @entity {
+  id: ID!
+  transactions: [String!]! 
+  blockTimestamps: [BigInt!]!
+  totalValue: BigInt! 
+}

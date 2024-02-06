@@ -900,3 +900,82 @@ export class DailySale extends Entity {
     this.set("numberOfSales", Value.fromI32(value));
   }
 }
+
+export class Watchlist extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save Watchlist entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type Watchlist must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+      );
+      store.set("Watchlist", id.toString(), this);
+    }
+  }
+
+  static loadInBlock(id: string): Watchlist | null {
+    return changetype<Watchlist | null>(store.get_in_block("Watchlist", id));
+  }
+
+  static load(id: string): Watchlist | null {
+    return changetype<Watchlist | null>(store.get("Watchlist", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get transactions(): Array<string> {
+    let value = this.get("transactions");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toStringArray();
+    }
+  }
+
+  set transactions(value: Array<string>) {
+    this.set("transactions", Value.fromStringArray(value));
+  }
+
+  get blockTimestamps(): Array<BigInt> {
+    let value = this.get("blockTimestamps");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigIntArray();
+    }
+  }
+
+  set blockTimestamps(value: Array<BigInt>) {
+    this.set("blockTimestamps", Value.fromBigIntArray(value));
+  }
+
+  get totalValue(): BigInt {
+    let value = this.get("totalValue");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set totalValue(value: BigInt) {
+    this.set("totalValue", Value.fromBigInt(value));
+  }
+}
