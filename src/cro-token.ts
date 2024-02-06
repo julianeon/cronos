@@ -142,10 +142,6 @@ function updateHolderBalances(fromAddress: string, toAddress: string, value: Big
   toHolder.save()
 }
 
-import { BigInt } from "@graphprotocol/graph-ts"
-import { Transfer } from "../generated/YourToken/YourToken"
-import { DailySale } from "../generated/schema"
-
 export function handleSale(event: Transfer): void {
   let date = event.block.timestamp.toI32()
   let dayId = date / 86400 
