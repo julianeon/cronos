@@ -42,9 +42,12 @@ At one point I introduced an entity called Info into [schema.graphql](schema.gra
 
 ## Example Queries
 
+
+Example queries can be viewed if you locally run [cronos-graph](https://github.com/julianeon/cronos-graph/tree/main), a Node.js Express app which hits this subgraph. To see the query output, view the homepage.
+
 This [tx query](https://github.com/julianeon/cronos-graph/blob/main/graph_query.js) returns data about a single transaction based on its transaction hash.
 
-It can be viewed live if you locally run [cronos-graph](https://github.com/julianeon/cronos-graph/tree/main), a Node.js Express app which hits this subgraph. To see the query output, view the homepage.
+Note: my focus has been on cronos, not cronos-graph. The latter has not been updated since last shown. 
 
 ## Endpoints
 
