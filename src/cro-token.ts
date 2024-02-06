@@ -15,7 +15,6 @@ import {
   MintFinished,
   Approval,
   Transfer, 
-  Info,
   Holder
 } from "../generated/schema"
 import { BigInt } from "@graphprotocol/graph-ts"
