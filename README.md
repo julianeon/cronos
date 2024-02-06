@@ -28,15 +28,15 @@ It can be viewed live if you locally run [cronos-graph](https://github.com/julia
 
 This information was taken from Subgraph Studio, from my Cronos subgraph. You must supply your own API key.
 
-## Production Query URL (Arbitrum One)
+### Production Query URL (Arbitrum One)
 
 https://gateway-arbitrum.network.thegraph.com/api/[api-key]/subgraphs/id/6HzdSVrye3kxbwRmAZtDyWENGQQnTHnEucjm5Gen4NsL
 
-## Development Query URL - Latest Version
+### Development Query URL - Latest Version
 
 https://api.studio.thegraph.com/query/63555/cronos/version/latest
 
-## Development Query URL - Selected Version
+### Development Query URL - Selected Version
 
 https://api.studio.thegraph.com/query/63555/cronos/v0.1.9
 
