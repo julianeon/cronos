@@ -24,9 +24,9 @@ This [tx query](https://github.com/julianeon/cronos-graph/blob/main/graph_query.
 
 It can be viewed live if you locally run [cronos-graph](https://github.com/julianeon/cronos-graph/tree/main), a Node.js Express app which hits this subgraph. To see the query output, view the homepage.
 
-# Details
+## Endpoints
 
-These details were taken from Subgraph Studio, from my Cronos subgraph. You must supply your own API key.
+This information was taken from Subgraph Studio, from my Cronos subgraph. You must supply your own API key.
 
 ## Production Query URL (Arbitrum One)
 
