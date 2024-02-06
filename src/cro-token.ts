@@ -15,8 +15,10 @@ import {
   MintFinished,
   Approval,
   Transfer, 
-  Info
+  Info,
+  Holder
 } from "../generated/schema"
+import { BigInt } from "@graphprotocol/graph-ts"
 
 export function handleUpdatedTokenInformation(
   event: UpdatedTokenInformationEvent
@@ -117,15 +119,24 @@ export function handleTransfer(event: TransferEvent): void {
 
   transferEntity.save()
 
-  let infoEntityId = "00000";
-  let infoEntity = Info.load(infoEntityId);
-  if (infoEntity == null) {
-    infoEntity = new Info(infoEntityId);
-    infoEntity.title = "This is the title.";
-    infoEntity.summary = "This is the summary.";
-    infoEntity.description = "This is the description.";
-    infoEntity.license = "MIT";
-    infoEntity.save();
+  updateHolderBalances(event.params.from.toHex(), event.params.to.toHex(), event.params.value)
+}
+
+function updateHolderBalances(fromAddress: string, toAddress: string, value: BigInt): void {
+  let fromHolder = Holder.load(fromAddress)
+  if (!fromHolder) {
+    fromHolder = new Holder(fromAddress)
+    fromHolder.balance = BigInt.fromI32(0)
   }
+  fromHolder.balance = fromHolder.balance.minus(value)
+  fromHolder.save()
+
+  let toHolder = Holder.load(toAddress)
+  if (!toHolder) {
+    toHolder = new Holder(toAddress)
+    toHolder.balance = BigInt.fromI32(0)
+  }
+  toHolder.balance = toHolder.balance.plus(value)
+  toHolder.save()
 }
 

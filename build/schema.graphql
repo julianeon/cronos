@@ -70,7 +70,3 @@ type Info @entity(immutable: true) {
   license: String!
 }
 
-type Holder @entity {
-  id: ID!
-  balance: BigInt!
-}

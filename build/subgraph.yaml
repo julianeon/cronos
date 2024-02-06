@@ -1,6 +1,6 @@
 specVersion: 0.0.5
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: CroToken
@@ -22,10 +22,9 @@ dataSources:
         - Approval
         - Transfer
         - Info
-        - Holder
       abis:
         - name: CroToken
-          file: ./abis/CroToken.json
+          file: CroToken/abis/CroToken.json
       eventHandlers:
         - event: UpdatedTokenInformation(string,string)
           handler: handleUpdatedTokenInformation
@@ -41,4 +40,4 @@ dataSources:
           handler: handleApproval
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-      file: ./src/cro-token.ts
+      file: CroToken/CroToken.wasm
