@@ -36,7 +36,6 @@ type Mint @entity(immutable: true) {
 
 type MintFinished @entity(immutable: true) {
   id: Bytes!
-
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!

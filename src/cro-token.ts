@@ -124,7 +124,11 @@ function saveTransfer(event: TransferEvent): void {
   transferEntity.save()
 }
 
-function updateHolderBalances(fromAddress: string, toAddress: string, value: BigInt, lastUpdated: BigInt): void {
+function updateHolderBalances(event: TransferEvent): void {
+  let fromAddress = event.params.from.toHex();
+  let toAddress = event.params.to.toHex();
+  let value = event.params.value;
+  let lastUpdated = event.block.timestamp;
   let fromHolder = Holder.load(fromAddress)
   if (!fromHolder) {
     fromHolder = new Holder(fromAddress)
