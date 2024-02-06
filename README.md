@@ -1,8 +1,6 @@
 # About
 
-This is my implementation of a subgraph for a typical ERC20 token - in this case, the Cronos token.
-
-You can see the smart contract address for the Cronos token on mainnet Etherscan at the link below.
+This is my implementation of a subgraph for the Cronos ERC20 token on mainnet Ethereum. You can see it on Etherscan at the link below.
 
 https://etherscan.io/address/0xA0b73E1Ff0B80914AB6fe0444E65848C4C34450b#code
 
