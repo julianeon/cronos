@@ -18,15 +18,22 @@ From the default template, I removed OwnerTransferred and OwnerDeployed as event
 
 I also introduced a number of new entities, other than the default ones.
 
-These entities are: Holder, DailySale, Watchlist, and Sampler. These entities are instantiated in response to qualifying blockchain transactions. These entities are meant to store data to answer the following types of queries.
+These entities are: 
+
+- Holder
+- DailySale
+- Watchlist
+- Sampler 
+
+These entities are instantiated in response to qualifying blockchain transactions. They are used to help answer the following types of queries.
 
 Holder creates an entry for every holder of Cronos, and the mapping either increments or decrements their balance. It is intended to show the balance of each Cronos holder.
 
-DailySale creates 'days' numbered based on their distance from the UNIX time start date. This definition of day was chosen because it provides a standard and easily computable reference point. The total transaction amount and total sales on that day are saved. It's meant to show sales volume & sale on each day.
+DailySale creates 'days' numbered based on their distance from the UNIX time start date. This definition of day was chosen because it provides a standard and easily computable reference point. The total transaction amount and total sales on that day are saved. It's meant to show sales volume & sale for each day, as defined above as a 24 hour block of time sequentially counted from the UNIX time start date.
 
-Watchlist currently shows the sum of all transactions (not counting decimal points) and the last indexed timestamp, through the last indexed transaction. It was originally meant to be used to test if a 'from' or 'to' address belonged to a given address set on a 'watchlist', but since all tests currently fail and every transaction is counted in the 'watchlistWatch' bucket, it returns the total sum of all transactions (rounding off all decimal values) and last indexed block timestamp.
+Watchlist currently shows the sum of all transactions (not counting decimal points) and the last indexed timestamp, through the last indexed transaction. It was originally meant to test if a 'from' or 'to' address belonged to a wallet on a 'watchlist', but since the tests currently fail and every transaction is counted in the 'watchlistWatch' bucket, now it returns the total sum of all transactions (rounding off all decimal values) and the last indexed block timestamp.
 
-Sampler is meant to 'sample' transactions in every 100th block, and saves that 'sample' transaction for querying. It also gives a rough count of how many samples have been taken until that point. As indicated by the name, it's meant to show more or less randomly selected sample transactions.
+Sampler is meant to 'sample' transactions in every 100th block, and saves that 'sample' transaction for querying. It also gives a rough count of how many samples have been taken until that point. As indicated by the name, it's meant to take a snapshot of 'random' every 100th block transactions.
 
 At one point I introduced an entity called Info into [schema.graphql](schema.graphql). This entity has now been removed because it wasn't sufficiently useful, but it can still be seen in the commit history.
 
@@ -38,9 +45,7 @@ For each transaction, handleTransfer calls saveTransfer, updateHolderBalances, s
 
 When a Transfer event is emitted by the Cronos token contract, those functions activate, and if the right conditions are met, its value is stored.
 
-
 ## Example Queries
-
 
 Example queries can be viewed if you locally run [cronos-graph](https://github.com/julianeon/cronos-graph/tree/main), a Node.js Express app which hits this subgraph. To see the query output, view the homepage.
 
@@ -62,5 +67,5 @@ https://api.studio.thegraph.com/query/63555/cronos/version/latest
 
 ### Development Query URL - Selected Version
 
-https://api.studio.thegraph.com/query/63555/cronos/v0.1.9
+https://api.studio.thegraph.com/query/63555/cronos/v0.2.9
 
