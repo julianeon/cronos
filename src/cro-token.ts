@@ -107,7 +107,7 @@ export function handleApproval(event: ApprovalEvent): void {
 
 export function handleTransfer(event: TransferEvent): void {
   saveTransfer(event)
-  updateHolderBalances(event.params.from.toHex(), event.params.to.toHex(), event.params.value, event.block.timestamp)
+  updateHolderBalances(event)
   handleDailySale(event)
 }
 
