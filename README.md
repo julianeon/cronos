@@ -41,7 +41,12 @@ At one point I introduced an entity called Info. This entity has now been remove
 
 See the 'handleTransfer' function in [src/cro-token.ts](src/cro-token.ts) to see the relevant mapping code.
 
-For each transaction, handleTransfer calls saveTransfer, updateHolderBalances, saveDailySale, watchlistCheck, and saveSampler.
+For each transaction, handleTransfer calls these functions:
+- saveTransfer
+- updateHolderBalances
+- saveDailySale
+- watchlistCheck
+- saveSampler
 
 When a Transfer event is emitted by the Cronos token contract, those functions activate, and if the right conditions are met, its value is stored.
 
