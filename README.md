@@ -52,9 +52,9 @@ When a Transfer event is emitted by the Cronos token contract, those functions a
 
 ## Areas for Improvement
 
-I would improve watchlistCheck so it matched real addresses.
+I would improve watchlistCheck so it matched addresses.
 
-I would also considered adding a transactions array and a blockchain timestamps array to the entity, while being mindful of the fact that this could cause a [large array](https://thegraph.com/blog/improve-subgraph-performance-avoiding-large-arrays/) problem. When one watchlist matches everything that isn't feasible, so that would have to be removed.
+I would also considered adding a transactions array and a blockchain timestamps array to the Watchlist entity, while being mindful of the fact that this could cause a [large array](https://thegraph.com/blog/improve-subgraph-performance-avoiding-large-arrays/) problem. When one watchlist matches everything that isn't feasible, so the default watchlist match would be removed.
 
 ## Example Queries
 
