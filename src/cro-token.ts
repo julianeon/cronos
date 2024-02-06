@@ -127,7 +127,6 @@ function updateHolderBalances(fromAddress: string, toAddress: string, value: Big
   if (!fromHolder) {
     fromHolder = new Holder(fromAddress)
     fromHolder.balance = BigInt.fromI32(0)
-    fromHolder.created = lastUpdated
   }
   fromHolder.balance = fromHolder.balance.minus(value)
   fromHolder.lastUpdated = lastUpdated
@@ -137,7 +136,6 @@ function updateHolderBalances(fromAddress: string, toAddress: string, value: Big
   if (!toHolder) {
     toHolder = new Holder(toAddress)
     toHolder.balance = BigInt.fromI32(0)
-    toHolder.created = lastUpdated
   }
   toHolder.balance = toHolder.balance.plus(value)
   toHolder.lastUpdated = lastUpdated
