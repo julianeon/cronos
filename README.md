@@ -27,6 +27,8 @@ These entities are:
 
 These entities are instantiated in response to qualifying blockchain transactions. They are used to help answer the following types of queries.
 
+The two most useful files to consult here are [schema.graphql](README.md), for the entities, and [src/cro-token.ts](README.md), for their mappings.
+
 Holder creates an entry for every holder of Cronos, and the mapping either increments or decrements their balance. It is intended to show the balance of each Cronos holder.
 
 DailySale creates 'days' numbered based on their distance from the UNIX time start date. This definition of day was chosen because it provides a standard and easily computable reference point. The total transaction amount and total sales on that day are saved. It's meant to show sales volume & sale for each day, as defined above as a 24 hour block of time sequentially counted from the UNIX time start date.
