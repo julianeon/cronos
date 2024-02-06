@@ -27,7 +27,7 @@ These entities are:
 
 These entities are instantiated in response to qualifying blockchain transactions. They are used to help answer the following types of queries.
 
-The two most useful files to consult here are [schema.graphql](schema.graphql), for the entities, and [src/cro-token.ts](README.md), for their mappings.
+The two most useful files to consult here are [schema.graphql](schema.graphql), for the entities, and [cro-token.ts](src/cro-token.ts), for their mappings.
 
 Holder creates an entry for every holder of Cronos, and the mapping either increments or decrements their balance. It is intended to show the balance of each Cronos holder.
 
