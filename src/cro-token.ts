@@ -114,7 +114,7 @@ export function handleTransfer(event: TransferEvent): void {
 function saveTransfer(event: TransferEvent): void {
   let transferEntity = new Transfer(
     event.transaction.hash.concatI32(event.logIndex.toI32()
-  )
+  ))
   transferEntity.from = event.params.from
   transferEntity.to = event.params.to
   transferEntity.value = event.params.value
