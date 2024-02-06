@@ -106,22 +106,22 @@ export function handleApproval(event: ApprovalEvent): void {
 }
 
 export function handleTransfer(event: TransferEvent): void {
+  saveTransfer(event)
+  updateHolderBalances(event.params.from.toHex(), event.params.to.toHex(), event.params.value, event.block.timestamp)
+  handleDailySale(event)
+}
+
+function saveTransfer(event: TransferEvent): void {
   let transferEntity = new Transfer(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   )
   transferEntity.from = event.params.from
   transferEntity.to = event.params.to
   transferEntity.value = event.params.value
-
   transferEntity.blockNumber = event.block.number
   transferEntity.blockTimestamp = event.block.timestamp
   transferEntity.transactionHash = event.transaction.hash
-
   transferEntity.save()
-
-  updateHolderBalances(event.params.from.toHex(), event.params.to.toHex(), event.params.value, event.block.timestamp)
-
-  handleDailySale(event)
 }
 
 function updateHolderBalances(fromAddress: string, toAddress: string, value: BigInt, lastUpdated: BigInt): void {
