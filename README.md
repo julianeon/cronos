@@ -18,7 +18,7 @@ https://thegraph.com/docs/en/quick-start/
 
 From the default template, I removed OwnerTransferred and OwnerDeployed as events from subgraph.yaml, as entities in schema.graphql, and from the AssemblyScript file in src/cro-token.ts.
 
-At one point I also introduced an entity called Info, which is defined as an entity in [schema.graphql](schema.graphql) and shows the strings it returns in [src/cro-token.ts](src/cro-token.ts). This entity has been removed because it wasn't sufficiently useful, but can still be seen in the commit history.
+At one point I also introduced an entity called Info into [schema.graphql](schema.graphql). This entity has now been removed because it wasn't sufficiently useful, but it can still be seen in the commit history.
 
 ## Example Queries
 
