@@ -62,7 +62,7 @@ Example queries can be viewed if you locally run [cronos-graph](https://github.c
 
 This [tx query](https://github.com/julianeon/cronos-graph/blob/main/graph_query.js) returns data about a single transaction based on its transaction hash.
 
-Note: my focus has been on cronos, not cronos-graph. The latter has not been updated to return information about the new entities.
+Note: my focus has been on cronos (this repo), not cronos-graph. The latter has not been updated to return information about the new entities.
 
 ## Endpoints
 
