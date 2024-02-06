@@ -35,7 +35,7 @@ Watchlist currently shows the sum of all transactions (not counting decimal poin
 
 Sampler is meant to 'sample' transactions in every 100th block, and saves that 'sample' transaction for querying. It also gives a rough count of how many samples have been taken until that point. As shown by the name, it's meant to take a snapshot of every 100th block's transactions.
 
-At one point I introduced an entity called Info. This entity has now been removed because it wasn't sufficiently useful, but it can still be seen in the commit history.
+At one point there was an entity called Info, which returned hardcoded information. This entity has now been removed because it wasn't sufficiently useful, but it can still be seen in the commit history.
 
 ## Mappings
 
