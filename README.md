@@ -8,7 +8,7 @@ https://etherscan.io/address/0xA0b73E1Ff0B80914AB6fe0444E65848C4C34450b#code
 
 ![subgraph studio](subgraph_studio.png)
 
-This subgraph was created by following the [Quick Start](https://thegraph.com/docs/en/quick-start/) tutorial, using Subgraph Studio and the Graph CLI, and then customizing the code. It is up to v0.1.9 now. 
+This subgraph was created by following the [Quick Start](https://thegraph.com/docs/en/quick-start/) tutorial, using Subgraph Studio and the Graph CLI, and then customizing the code. It is up to v0.2.9 now. 
 
 This subgraph has been deployed to Arbitrum one.
 
