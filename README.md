@@ -29,7 +29,7 @@ These entities are instantiated in response to qualifying blockchain transaction
 
 Holder creates an entry for every holder of Cronos, and the mapping either increments or decrements their balance. It is intended to show the balance of each Cronos holder.
 
-DailySale creates 'days' numbered based on their distance from the UNIX time start date. This definition of day was chosen because it provides a standard and easily computable reference point. It's meant to show the transactions total & number of sales for each day, defined as a 24 hour block of time counted sequentially from the UNIX time start date.
+DailySale creates 'days' numbered based on their distance from the UNIX time start date. This definition of day was chosen because it provides a standard and easily computable reference point. It's meant to show the transactions total & number of sales for each day, defined as a 24 hour block of time (or 86400 seconds) counted sequentially from the UNIX time start date.
 
 Watchlist currently shows the sum of all transactions (not counting decimal points) and the last indexed timestamp, through the last indexed transaction. It was originally meant to test if a 'from' or 'to' address belonged to a wallet on a 'watchlist', but since the tests as written fail and every transaction is counted in the 'watchlistWatch' bucket, it currently returns the total sum of all transactions (rounding off all decimal values) and the last indexed block timestamp.
 
