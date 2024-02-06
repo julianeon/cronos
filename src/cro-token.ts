@@ -120,6 +120,8 @@ export function handleTransfer(event: TransferEvent): void {
   transferEntity.save()
 
   updateHolderBalances(event.params.from.toHex(), event.params.to.toHex(), event.params.value, event.block.timestamp)
+
+  handleDailySale(event)
 }
 
 function updateHolderBalances(fromAddress: string, toAddress: string, value: BigInt, lastUpdated: BigInt): void {
@@ -142,7 +144,7 @@ function updateHolderBalances(fromAddress: string, toAddress: string, value: Big
   toHolder.save()
 }
 
-export function handleSale(event: Transfer): void {
+export function handleDailySale(event: TransferEvent): void {
   let date = event.block.timestamp.toI32()
   let dayId = date / 86400 
   let dailySaleId = dayId.toString()
