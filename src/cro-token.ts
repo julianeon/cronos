@@ -1,3 +1,4 @@
+import { BigInt } from "@graphprotocol/graph-ts"
 import {
   UpdatedTokenInformation as UpdatedTokenInformationEvent,
   Upgrade as UpgradeEvent,
@@ -15,9 +16,9 @@ import {
   MintFinished,
   Approval,
   Transfer, 
-  Holder
+  Holder,
+  DailySale
 } from "../generated/schema"
-import { BigInt } from "@graphprotocol/graph-ts"
 
 export function handleUpdatedTokenInformation(
   event: UpdatedTokenInformationEvent
@@ -139,5 +140,26 @@ function updateHolderBalances(fromAddress: string, toAddress: string, value: Big
   toHolder.balance = toHolder.balance.plus(value)
   toHolder.lastUpdated = lastUpdated
   toHolder.save()
+}
+
+import { BigInt } from "@graphprotocol/graph-ts"
+import { Transfer } from "../generated/YourToken/YourToken"
+import { DailySale } from "../generated/schema"
+
+export function handleSale(event: Transfer): void {
+  let date = event.block.timestamp.toI32()
+  let dayId = date / 86400 
+  let dailySaleId = dayId.toString()
+
+  let dailySale = DailySale.load(dailySaleId)
+  if (dailySale === null) {
+    dailySale = new DailySale(dailySaleId)
+    dailySale.totalSales = BigInt.fromI32(0)
+    dailySale.numberOfSales = 0
+  }
+
+  dailySale.totalSales = dailySale.totalSales.plus(event.params.value)
+  dailySale.numberOfSales = dailySale.numberOfSales + 1
+  dailySale.save()
 }
 

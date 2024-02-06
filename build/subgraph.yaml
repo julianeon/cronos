@@ -21,7 +21,6 @@ dataSources:
         - MintFinished
         - Approval
         - Transfer
-        - Info
         - Holder
       abis:
         - name: CroToken

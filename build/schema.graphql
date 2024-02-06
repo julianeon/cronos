@@ -62,14 +62,6 @@ type Transfer @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type Info @entity(immutable: true) {
-  id: ID!
-  title: String!
-  summary: String!
-  description: String!
-  license: String!
-}
-
 type Holder @entity {
   id: ID!
   balance: BigInt!
