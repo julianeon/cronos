@@ -54,7 +54,7 @@ When a Transfer event is emitted by the Cronos token contract, those functions a
 
 I would improve watchlistCheck so it matched addresses.
 
-I would also considered adding a transactions array and a blockchain timestamps array to the Watchlist entity, meaning that every transaction hash and timestamp from one of the addresses in a watchlist would be added to that watchlist's entity, while being mindful of the fact that this could cause a [large array](https://thegraph.com/blog/improve-subgraph-performance-avoiding-large-arrays/) problem. When one watchlist matches everything that isn't feasible, so that one would be removed.
+I could also add a transactions array and a blockchain timestamps array to the Watchlist entity, meaning that every transaction hash and timestamp from one of the addresses in a watchlist would be added to that watchlist's entity, while being mindful of the fact that this could cause a [large array](https://thegraph.com/blog/improve-subgraph-performance-avoiding-large-arrays/) problem. When one watchlist matches everything that isn't feasible, so that one would be removed.
 
 ## Example Queries
 
