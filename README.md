@@ -22,11 +22,11 @@ These entities are: Holder, DailySale, Watchlist, and Sampler. These entities ar
 
 Holder creates an entry for every holder of Cronos, and the mapping either increments or decrements their balance. It is intended to show the balance of each Cronos holder.
 
-DailySale creates 'days' numbered based on their distance from the UNIX time start date. I believe this provides a standard and easily computable reference point, so that was why I chose it. It sums up the total transaction amount and total sales on that day. It's meant to show sales volume & sale on each day.
+DailySale creates 'days' numbered based on their distance from the UNIX time start date. This definition of day was chosen because it provides a standard and easily computable reference point. The total transaction amount and total sales on that day are saved. It's meant to show sales volume & sale on each day.
 
-Watchlist currently shows the sum of all transactions (not counting decimal points) and the last indexed timestamp, through the last indexed transaction. It was originally meant to be used to test if a 'from' or 'to' address belonged to a given address set on a 'watchlist', but since all these tests currently fail and every transaction is counted in the 'general' bucket, it returns the total sum of all transactions (rounding off all decimal values) and last indexed block timestamp.
+Watchlist currently shows the sum of all transactions (not counting decimal points) and the last indexed timestamp, through the last indexed transaction. It was originally meant to be used to test if a 'from' or 'to' address belonged to a given address set on a 'watchlist', but since all tests currently fail and every transaction is counted in the 'watchlistWatch' bucket, it returns the total sum of all transactions (rounding off all decimal values) and last indexed block timestamp.
 
-Sampler is meant to 'sample' transactions in every 100th block, and saves that 'sample' for querying. It also gives a rough count of how many samples have been taken until that point.
+Sampler is meant to 'sample' transactions in every 100th block, and saves that 'sample' transaction for querying. It also gives a rough count of how many samples have been taken until that point. As indicated by the name, it's meant to show more or less randomly selected sample transactions.
 
 ## Mappings
 
