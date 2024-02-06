@@ -8,7 +8,7 @@ dataSources:
     source:
       address: "0xA0b73E1Ff0B80914AB6fe0444E65848C4C34450b"
       abi: CroToken
-      startBlock: 16823173
+      startBlock: 16933384
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -24,6 +24,7 @@ dataSources:
         - Holder
         - DailySale 
         - Watchlist
+        - Sampler
       abis:
         - name: CroToken
           file: ./abis/CroToken.json

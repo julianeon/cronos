@@ -75,7 +75,18 @@ type DailySale @entity {
 
 type Watchlist @entity {
   id: ID!
-  transactions: [String!]! 
-  blockTimestamps: [BigInt!]!
   totalValue: BigInt! 
+  lastTimestamp: BigInt!
 }
+
+type Sampler @entity {
+  id: ID!
+  count: Int! 
+  from: Bytes! 
+  to: Bytes! 
+  value: BigInt! 
+  blockNumber: BigInt! 
+  blockTimestamp: BigInt! 
+  transactionHash: Bytes! 
+}
+

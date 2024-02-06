@@ -18,7 +18,8 @@ import {
   Transfer, 
   Holder,
   DailySale,
-  Watchlist
+  Watchlist,
+  Sampler
 } from "../generated/schema"
 
 export function handleUpdatedTokenInformation(
@@ -111,6 +112,7 @@ export function handleTransfer(event: TransferEvent): void {
   updateHolderBalances(event)
   saveDailySale(event)
   watchlistCheck(event)
+  saveSampler(event)
 }
 
 function saveTransfer(event: TransferEvent): void {
@@ -174,40 +176,54 @@ function watchlistCheck(event: TransferEvent): void {
 
   let fromAddress = event.params.from.toHex();
   let toAddress = event.params.to.toHex();
-  let transactionHash = event.transaction.hash.toHex();
   let transactionValue = event.params.value;
   let blockTimestamp = event.block.timestamp;
 
   if (specialAddressSmart.includes(fromAddress) || specialAddressSmart.includes(toAddress)) {
-    saveWatchlist("watchlistSmart", transactionHash, blockTimestamp, transactionValue);
-  }
-
-  if (specialAddressFamous.includes(fromAddress) || specialAddressFamous.includes(toAddress)) {
-    saveWatchlist("watchlistFamous", transactionHash, blockTimestamp, transactionValue);
-  }
-
-  if (specialAddressConcern.includes(fromAddress) || specialAddressConcern.includes(toAddress)) {
-    saveWatchlist("watchlistConcern", transactionHash, blockTimestamp, transactionValue);
+    saveWatchlist("watchlistSmart", transactionValue, blockTimestamp);
+  } else if (specialAddressFamous.includes(fromAddress) || specialAddressFamous.includes(toAddress)) {
+    saveWatchlist("watchlistFamous", transactionValue, blockTimestamp);
+  } else if (specialAddressConcern.includes(fromAddress) || specialAddressConcern.includes(toAddress)) {
+    saveWatchlist("watchlistConcern", transactionValue, blockTimestamp);
+  } else {
+    saveWatchlist("watchlistWatch", transactionValue, blockTimestamp);
   }
 }
 
-function saveWatchlist(watchlistId: string, transactionHash: string, blockTimestamp: BigInt, transactionValue: BigInt): void {
+function saveWatchlist(watchlistId: string, transactionValue: BigInt, blockTimestamp: BigInt): void {
+  let converter = BigInt.fromI64(10).pow(8);
+
   let watchlist = Watchlist.load(watchlistId);
   if (!watchlist) {
     watchlist = new Watchlist(watchlistId);
-    watchlist.transactions = [];
-    watchlist.blockTimestamps = [];
     watchlist.totalValue = BigInt.fromI32(0); 
+    watchlist.lastTimestamp = blockTimestamp;
   }
+  let adjustedValue = transactionValue.div(converter);
+  watchlist.totalValue = watchlist.totalValue.plus(adjustedValue); 
+  watchlist.lastTimestamp = blockTimestamp;
+  watchlist.save();
+}
 
-  let transactions = watchlist.transactions;
-  let blockTimestamps = watchlist.blockTimestamps;
-  if (!transactions.includes(transactionHash)) { 
-    transactions.push(transactionHash);
-    blockTimestamps.push(blockTimestamp);
-    watchlist.transactions = transactions;
-    watchlist.blockTimestamps = blockTimestamps;
-    watchlist.totalValue = watchlist.totalValue.plus(transactionValue); 
-    watchlist.save();
+function saveSampler(event: TransferEvent): void {
+  let startBlock = BigInt.fromI32(16933384);
+  let currentBlock = event.block.number;
+  let blockDifference = currentBlock.minus(startBlock);
+
+  if (blockDifference.mod(BigInt.fromI32(100)).equals(BigInt.fromI32(0))) {
+    let samplerId = currentBlock.toString() + "-" + event.transaction.hash.toHex();
+    let sampler = Sampler.load(samplerId);
+    if (!sampler) {
+      sampler = new Sampler(samplerId);
+      sampler.from = event.params.from;
+      sampler.to = event.params.to;
+      sampler.value = event.params.value;
+      sampler.blockNumber = currentBlock;
+      sampler.blockTimestamp = event.block.timestamp;
+      sampler.transactionHash = event.transaction.hash;
+      sampler.count = blockDifference.div(BigInt.fromI32(100)).toI32() + 1; 
+      sampler.save();
+    }
   }
 }
+
