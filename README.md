@@ -50,6 +50,12 @@ For each transaction, handleTransfer calls these functions:
 
 When a Transfer event is emitted by the Cronos token contract, those functions activate, and if the right conditions are met, its value is stored.
 
+## Areas for Improvement
+
+I would improve watchlistCheck so it matched real addresses.
+
+I would also considered adding a transactions array and a blockchain timestamps array to the entity, while being mindful of the fact that this could cause a [large array](https://thegraph.com/blog/improve-subgraph-performance-avoiding-large-arrays/) problem. When one watchlist matches everything that isn't feasible, so that would have to be removed.
+
 ## Example Queries
 
 Example queries can be viewed if you locally run [cronos-graph](https://github.com/julianeon/cronos-graph/tree/main), a Node.js Express app which hits this subgraph. To see the query output, view the homepage.
