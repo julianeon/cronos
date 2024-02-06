@@ -35,11 +35,11 @@ Watchlist currently shows the sum of all transactions (not counting decimal poin
 
 Sampler is meant to 'sample' transactions in every 100th block, and saves that 'sample' transaction for querying. It also gives a rough count of how many samples have been taken until that point. As indicated by the name, it's meant to take a snapshot of 'random' every 100th block transactions.
 
-At one point I introduced an entity called Info into [schema.graphql](schema.graphql). This entity has now been removed because it wasn't sufficiently useful, but it can still be seen in the commit history.
+At one point I introduced an entity called Info. This entity has now been removed because it wasn't sufficiently useful, but it can still be seen in the commit history.
 
 ## Mappings
 
-See the 'handleTransfer' function in src/cro-token.js to see the relevant mapping code.
+See the 'handleTransfer' function in [src/cro-token.ts](src/cro-token.ts) to see the relevant mapping code.
 
 For each transaction, handleTransfer calls saveTransfer, updateHolderBalances, saveDailySale, watchlistCheck, and saveSampler.
 
