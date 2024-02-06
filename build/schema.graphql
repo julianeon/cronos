@@ -73,4 +73,5 @@ type Info @entity(immutable: true) {
 type Holder @entity {
   id: ID!
   balance: BigInt!
+  lastUpdated: BigInt!
 }
