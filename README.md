@@ -16,9 +16,9 @@ This subgraph has been deployed to Arbitrum one.
 
 From the default template, I removed OwnerTransferred and OwnerDeployed as events from subgraph.yaml, as entities in schema.graphql, and from the mapping file in src/cro-token.ts.
 
-There are now a number of entities I introduced, other than the default ones.
+I also introduced a number of new entities, other than the default ones.
 
-These entities are: Holder, DailySale, Watchlist, and Sampler. These entities are instantiated in response to qualifying relevant blockchain transactions. These entities are meant to store data to answer the following types of queries.
+These entities are: Holder, DailySale, Watchlist, and Sampler. These entities are instantiated in response to qualifying blockchain transactions. These entities are meant to store data to answer the following types of queries.
 
 Holder creates an entry for every holder of Cronos, and the mapping either increments or decrements their balance. It is intended to show the balance of each Cronos holder.
 
