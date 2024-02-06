@@ -22,7 +22,8 @@ dataSources:
         - Approval
         - Transfer
         - Holder
-        - DailySale
+        - DailySale 
+        - Watchlist
       abis:
         - name: CroToken
           file: ./abis/CroToken.json

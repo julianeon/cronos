@@ -23,6 +23,7 @@ dataSources:
         - Transfer
         - Holder
         - DailySale
+        - Watchlist
       abis:
         - name: CroToken
           file: CroToken/abis/CroToken.json
