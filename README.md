@@ -14,7 +14,7 @@ This subgraph has been deployed to Arbitrum one.
 
 ## Structure 
 
-From the default template, I removed OwnerTransferred and OwnerDeployed as events from subgraph.yaml, as entities in schema.graphql, and from the mapping file in src/cro-token.ts.
+From the default template, I removed OwnerTransferred and OwnerDeployed as events from [subgraph.yaml](subgraph.yaml), as entities in [schema.graphql](schema.graphql), and from the mapping file in [src/cro-token.ts](src/cro-token.ts).
 
 I also introduced a number of new entities, other than the default ones.
 
@@ -26,8 +26,6 @@ These entities are:
 - Sampler 
 
 These entities are instantiated in response to qualifying blockchain transactions. They are used to help answer the following types of queries.
-
-The two most useful files to consult here are [schema.graphql](schema.graphql), for the entities, and [cro-token.ts](src/cro-token.ts), for their mappings.
 
 Holder creates an entry for every holder of Cronos, and the mapping either increments or decrements their balance. It is intended to show the balance of each Cronos holder.
 
