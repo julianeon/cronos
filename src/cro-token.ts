@@ -150,7 +150,7 @@ export function handleDailySale(event: TransferEvent): void {
   let dailySaleId = dayId.toString()
 
   let dailySale = DailySale.load(dailySaleId)
-  if (dailySale === null) {
+  if (!dailySale) {
     dailySale = new DailySale(dailySaleId)
     dailySale.totalSales = BigInt.fromI32(0)
     dailySale.numberOfSales = 0
