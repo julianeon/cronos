@@ -8,9 +8,9 @@ https://etherscan.io/address/0xA0b73E1Ff0B80914AB6fe0444E65848C4C34450b#code
 
 ![subgraph studio](subgraph_studio.png)
 
-This subgraph was created by following the [Quick Start](https://thegraph.com/docs/en/quick-start/) tutorial, using Subgraph Studio and the Graph CLI, and then customizing the code. It is up to v0.2.9 now. 
+This subgraph was created by following the [Quick Start](https://thegraph.com/docs/en/quick-start/) tutorial, using Subgraph Studio and the Graph CLI, and then customizing the code. It is up to v0.3.8 now. 
 
-This subgraph has been deployed to Arbitrum one.
+This subgraph has been deployed to Arbitrum One.
 
 ## Structure 
 
@@ -31,11 +31,15 @@ Holder creates an entry for every holder of Cronos, and the mapping either incre
 
 DailySale creates 'days' numbered based on their distance from the UNIX time start date. This definition of day was chosen because it provides a standard and easily computable reference point. It's meant to show the transactions total & number of sales for each day, defined as a 24 hour block of time (that is, 86400 seconds) counted sequentially from the UNIX time start date.
 
-Watchlist currently shows the sum of all transactions (not counting decimal points) and the last indexed timestamp, through the last indexed transaction. It was originally meant to test if a 'from' or 'to' address belonged to a wallet on a 'watchlist', but since the tests as written fail and every transaction is counted in the 'watchlistWatch' bucket, it currently returns the total sum of all transactions (rounding off all decimal values) and the last indexed block timestamp.
+Watchlist is meant to match transactions on a 'watchlist', a hard coded list of addresses the subgraph creator may wish to monitor. If a 'from' or a 'to' address belongs to a wallet in the watchlist array, it adds the amount of that transaction to a running total. It also records the last indexed block timestamp of an address on that watchlist. Users can then query a watchlist to find out the sum of its transactions and the timestamp of the last recorded transaction.
 
 Sampler is meant to 'sample' transactions in every 100th block, and saves that 'sample' transaction for querying. It also gives a rough count of how many samples have been taken until that point. As shown by the name, it's meant to take a snapshot of every 100th block's transactions.
 
+## Deprecated 
+
 At one point there was an entity called Info, which returned hardcoded information. While I've removed this, it can still be seen in the commit history.
+
+Formerly, Watchlist matched all transactions (because the test failed), but that issue has been resolved.
 
 ## Mappings
 
