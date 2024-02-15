@@ -80,5 +80,5 @@ https://api.studio.thegraph.com/query/63555/cronos/v0.2.9
 
 At one point there was an entity called Info, which returned hardcoded information. While I've removed this, it can still be seen in the commit history.
 
-Formerly, Watchlist matched all transactions (because the test failed), but that issue has been resolved.
+Formerly, Watchlist matched all transactions (because the tests always failed), but that issue has been resolved.
 
