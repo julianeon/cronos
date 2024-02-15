@@ -50,7 +50,7 @@ When a Transfer event is emitted by the Cronos token contract, those functions a
 
 ## Areas for Improvement
 
-The watchlist function could be improved so it stored transactions from matching addresses in an array, beyond just storing their sum. It's possible that this could cause a [large array](https://thegraph.com/blog/improve-subgraph-performance-avoiding-large-arrays/) problem, so be aware of this.
+The watchlist function could be improved so it stored transactions from matching addresses in an array, beyond just storing their sum. It's possible that this could cause a [large array](https://thegraph.com/blog/improve-subgraph-performance-avoiding-large-arrays/) problem, so it may be helpful to have an idea of the potential number of matching transactions.
 
 
 ## Example Queries
