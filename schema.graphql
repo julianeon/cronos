@@ -77,6 +77,8 @@ type Watchlist @entity {
   id: ID!
   totalValue: BigInt! 
   lastTimestamp: BigInt!
+  toLastAddress: Bytes!
+  specialLastAddress: Bytes!
 }
 
 type Sampler @entity {
