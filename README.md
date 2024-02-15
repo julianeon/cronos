@@ -35,12 +35,6 @@ Watchlist is meant to match transactions on a 'watchlist', a hard coded list of 
 
 Sampler is meant to 'sample' transactions in every 100th block, and saves that 'sample' transaction for querying. It also gives a rough count of how many samples have been taken until that point. As shown by the name, it's meant to take a snapshot of every 100th block's transactions.
 
-## Deprecated 
-
-At one point there was an entity called Info, which returned hardcoded information. While I've removed this, it can still be seen in the commit history.
-
-Formerly, Watchlist matched all transactions (because the test failed), but that issue has been resolved.
-
 ## Mappings
 
 See the 'handleTransfer' function in [src/cro-token.ts](src/cro-token.ts) to see the relevant mapping code.
@@ -57,6 +51,7 @@ When a Transfer event is emitted by the Cronos token contract, those functions a
 ## Areas for Improvement
 
 The watchlist function could be improved so it stored transactions from matching addresses in an array, beyond just storing their sum. It's possible that this could cause a [large array](https://thegraph.com/blog/improve-subgraph-performance-avoiding-large-arrays/) problem, so be aware of this.
+
 
 ## Example Queries
 
@@ -81,4 +76,10 @@ https://api.studio.thegraph.com/query/63555/cronos/version/latest
 ### Development Query URL - Selected Version
 
 https://api.studio.thegraph.com/query/63555/cronos/v0.2.9
+
+## Deprecated 
+
+At one point there was an entity called Info, which returned hardcoded information. While I've removed this, it can still be seen in the commit history.
+
+Formerly, Watchlist matched all transactions (because the test failed), but that issue has been resolved.
 
