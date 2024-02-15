@@ -178,28 +178,24 @@ function addressInList(address: Bytes, list: Bytes[]): boolean {
   return false;
 }
 
-function tobyte(hexString: string): Bytes {
-  return Bytes.fromHexString(hexString) as Bytes;
-}
-
 function watchlistCheck(event: TransferEvent): void {
   const specialAddressSmart: Bytes[] = [
-  tobyte("0xF78930A80E73b7343a3dd93E711A31800cb1cCd3"),
-  tobyte("0x8deEA861b99eBc48CED966C8e87fc2E4983a3170"),
-  tobyte("0x243Bb7Bf74D517D5585829Faf31f3cB5210C538e")
+  Bytes.fromHexString("0xF78930A80E73b7343a3dd93E711A31800cb1cCd3"),
+  Bytes.fromHexString("0x8deEA861b99eBc48CED966C8e87fc2E4983a3170"),
+  Bytes.fromHexString("0x243Bb7Bf74D517D5585829Faf31f3cB5210C538e")
   ];
   const specialAddressFamous: Bytes[] = [
-  tobyte("0xA4218A698E77CCb93c2710fbCaA116A04e837295"),
-  tobyte("0xeF3f7c1009084Bf4b920F2FB2559Fa89ea0E573D"),
-  tobyte("0x794493883E7D354493349461C90AC59028682610"),
-  tobyte("0x0D0707963952f2fBA59dD06f2b425ace40b492Fe"),
-  tobyte("0xb2c02210b4136ef9273cbea10c574d17ed9e67e2")
+  Bytes.fromHexString("0xA4218A698E77CCb93c2710fbCaA116A04e837295"),
+  Bytes.fromHexString("0xeF3f7c1009084Bf4b920F2FB2559Fa89ea0E573D"),
+  Bytes.fromHexString("0x794493883E7D354493349461C90AC59028682610"),
+  Bytes.fromHexString("0x0D0707963952f2fBA59dD06f2b425ace40b492Fe"),
+  Bytes.fromHexString("0xb2c02210b4136ef9273cbea10c574d17ed9e67e2")
   ];
   const specialAddressConcern: Bytes[] = [
-  tobyte("0xf431dA0523D426Aa75C52723C9d128326963C66e"),
-  tobyte("0x15DD58888Dc351ebb73DaadDE4313B9C78003fB6"),
-  tobyte("0xf4cbeb8DA815188Bf3e2b13BFf26D1aa1B0635D1"),
-  tobyte("0x46340b20830761efd32832a74d7169b29feb9758")
+  Bytes.fromHexString("0xf431dA0523D426Aa75C52723C9d128326963C66e"),
+  Bytes.fromHexString("0x15DD58888Dc351ebb73DaadDE4313B9C78003fB6"),
+  Bytes.fromHexString("0xf4cbeb8DA815188Bf3e2b13BFf26D1aa1B0635D1"),
+  Bytes.fromHexString("0x46340b20830761efd32832a74d7169b29feb9758")
   ];
 
   let fromAddress = event.params.from;
@@ -207,13 +203,41 @@ function watchlistCheck(event: TransferEvent): void {
   let transactionValue = event.params.value;
   let blockTimestamp = event.block.timestamp;
 
-  if (addressInList(fromAddress, specialAddressSmart) || addressInList(toAddress, specialAddressSmart)) {
-    saveWatchlist("watchlistSmart", transactionValue, blockTimestamp, toAddress, specialAddressSmart[0]);
-  } else if (addressInList(fromAddress, specialAddressFamous) || addressInList(toAddress, specialAddressFamous)) {
-    saveWatchlist("watchlistFamous", transactionValue, blockTimestamp, toAddress, specialAddressFamous[0]);
-  } else if (addressInList(fromAddress, specialAddressConcern) || addressInList(toAddress, specialAddressConcern)) {
-    saveWatchlist("watchlistConcern", transactionValue, blockTimestamp, toAddress, specialAddressConcern[0]);
-  } 
+
+  let matchingSpecialAddress: Bytes | null = null;
+  let watchlistCategory = "";
+
+  for (let i = 0; i < specialAddressSmart.length; i++) {
+    if (specialAddressSmart[i].equals(fromAddress) || specialAddressSmart[i].equals(toAddress)) {
+      matchingSpecialAddress = specialAddressSmart[i];
+      watchlistCategory = "watchlistSmart";
+      break;
+    }
+  }
+
+  if (!matchingSpecialAddress) {
+    for (let i = 0; i < specialAddressFamous.length; i++) {
+      if (specialAddressFamous[i].equals(fromAddress) || specialAddressFamous[i].equals(toAddress)) {
+        matchingSpecialAddress = specialAddressFamous[i];
+        watchlistCategory = "watchlistFamous";
+        break;
+      }
+    }
+  }
+
+  if (!matchingSpecialAddress) {
+    for (let i = 0; i < specialAddressConcern.length; i++) {
+      if (specialAddressConcern[i].equals(fromAddress) || specialAddressConcern[i].equals(toAddress)) {
+        matchingSpecialAddress = specialAddressConcern[i];
+        watchlistCategory = "watchlistConcern";
+        break;
+      }
+    }
+  }
+
+  if (matchingSpecialAddress && watchlistCategory) {
+    saveWatchlist(watchlistCategory, transactionValue, blockTimestamp, toAddress, matchingSpecialAddress);
+  }
 }
 
 function saveWatchlist(watchlistId: string, transactionValue: BigInt, blockTimestamp: BigInt, toAddress: Bytes, specialAddress: Bytes): void {
