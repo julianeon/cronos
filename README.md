@@ -31,7 +31,7 @@ Holder creates an entry for every holder of Cronos, and the mapping either incre
 
 DailySale creates 'days' numbered based on their distance from the UNIX time start date. This definition of day was chosen because it provides a standard and easily computable reference point. It's meant to show the transactions total & number of sales for each day, defined as a 24 hour block of time (that is, 86400 seconds) counted sequentially from the UNIX time start date.
 
-Watchlist is meant to match transactions on a 'watchlist', a hard coded list of addresses the subgraph creator may wish to monitor. If a 'from' or a 'to' address belongs to a wallet in the watchlist array, it adds the amount of that transaction to a running total. It also records the last indexed block timestamp of an address on that watchlist. Users can then query a watchlist to find out the sum of its transactions and the timestamp of the last transaction from an address on that watchlist.
+Watchlist is meant to match transactions on a 'watchlist', a hard coded list of addresses the subgraph creator may wish to monitor. If a 'from' or a 'to' address belongs to a wallet in the watchlist array, it adds the amount of that transaction to a running total. It also records the last indexed block timestamp of an address on that watchlist. Users can then query a watchlist to find out the sum of its transactions and the timestamp of the last transaction from one of its addresses.
 
 Sampler is meant to 'sample' transactions in every 100th block, and saves that 'sample' transaction for querying. It also gives a rough count of how many samples have been taken until that point. As shown by the name, it's meant to take a snapshot of every 100th block's transactions.
 
